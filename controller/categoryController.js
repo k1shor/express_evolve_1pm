@@ -10,6 +10,12 @@ exports.addCategory = async (req, res) => {
     let category = await CategoryModel.findOne({
         category_name: req.body.category_name
     })
+    /*
+category.category_name = req.body.category_name
+category = await category.save()
+
+    */
+
     if (category) {
         return res.status(400).json({ error: "category already exists" })
     }
