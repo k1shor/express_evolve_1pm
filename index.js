@@ -8,6 +8,7 @@ const morgan = require('morgan')
 // import routes
 const CategoryRoute = require('./routes/categoryRoute')
 const ProductRoute = require('./routes/productRouter')
+const UserRoute = require('./routes/userRoute')
 
 
 const app = express()
@@ -17,8 +18,9 @@ app.use(express.json())
 app.use(morgan('dev'))
 
 // using routes
-app.use(CategoryRoute)
+app.use('/api',CategoryRoute)
 app.use('/api',ProductRoute)
+app.use('/api',UserRoute)
 
 app.use('/public/uploads', express.static('public/uploads'))
 

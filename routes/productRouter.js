@@ -12,6 +12,5 @@ router.put('/updateproduct/:id', upload.single('product_image'), updateProduct)
 router.delete('/deleteproduct/:id', deleteProduct)
 
 
-router.post('/register', register)
 
 module.exports = router

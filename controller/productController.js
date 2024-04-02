@@ -29,7 +29,7 @@ exports.addProduct = async (req, res) => {
 exports.getAllProducts = async (req, res) => {
     let products = await ProductModel.find().populate('category', 'category_name')
     if (!products) {
-        return res.status(400).json({ error: "Something went wrong" })
+         return res.status(400).json({ error: "Something went wrong" })
     }
     res.send(products)
 }
