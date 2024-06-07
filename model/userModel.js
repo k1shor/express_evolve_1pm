@@ -15,14 +15,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    date_of_birth: {
-        type: Date,
-        required: true
-    },
-    gender:{
-        type: String,
-        required: true
-    },
+    // date_of_birth: {
+    //     type: Date,
+    //     required: true
+    // },
+    // gender:{
+    //     type: String,
+    //     required: true
+    // },
     isVerified:{
         type: Boolean,
         default: false
@@ -33,10 +33,10 @@ const userSchema = new mongoose.Schema({
         /**/ 
     },
     
-    address:{
-        type:ObjectId,
-        ref: "Address"
-    }
+    // address:{
+    //     type:ObjectId,
+    //     ref: "Address"
+    // }
 
 
 

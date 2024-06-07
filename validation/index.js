@@ -43,8 +43,8 @@ exports.userCheck = [
         .matches(/[!@#$\-]/).withMessage("Password must contain at least 1 special character")
         .isLength({ min: 8 }).withMessage("Password must be at least 8 characters")
         .not().isIn(['P@ssw0rd']).withMessage("P@ssw0rd is not allowed"),
-    check('gender')
-        .isIn(['male', 'female']).withMessage("Gender must be either male or female")
+    // check('gender')
+    //     .isIn(['male', 'female']).withMessage("Gender must be either male or female")
 
 
 ]

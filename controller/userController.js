@@ -13,7 +13,7 @@ const sendEmail = require('../utils/emailSender')
 
 // register
 exports.register = async (req, res) => {
-    let { username, email, password, date_of_birth, gender, street, city, state, zipcode, country, country_code, phone } = req.body
+    let { username, email, password } = req.body
 
     // check if username already exists
     let user = await UserModel.findOne({ username })
@@ -28,13 +28,13 @@ exports.register = async (req, res) => {
     }
 
     // record the address -> _id
-    let address = await AddressModel.create({
-        street, city, state, zipcode, country, country_code, phone
-    })
+    // let address = await AddressModel.create({
+    //     street, city, state, zipcode, country, country_code, phone
+    // })
 
-    if (!address) {
-        return res.status(400).json({ error: "Something to wrong, please try again later" })
-    }
+    // if (!address) {
+    //     return res.status(400).json({ error: "Something to wrong, please try again later" })
+    // }
 
     // encrypt password
     let salt = await bcrypt.genSalt(10)
@@ -48,9 +48,9 @@ exports.register = async (req, res) => {
         username,
         email,
         password: hashed_password,
-        gender,
-        date_of_birth,
-        address: address._id
+        // gender,
+        // date_of_birth,
+        // address: address._id
     })
 
     // generate token
@@ -61,7 +61,8 @@ exports.register = async (req, res) => {
 
     // send verification link(generate token) in email
 
-    const url = `http://localhost:5000/api/verifyemail/${token.token}`
+    // const url = `http://localhost:5000/api/verifyemail/${token.token}`
+    const url = `http://localhost:3000/verifyEmail/${token.token}`
 
     sendEmail({
         from: "noreply@something.com",
@@ -127,7 +128,7 @@ exports.resendVerification = async (req, res) => {
     if (!token) {
         return res.status(400).json({ error: "Something went wrong" })
     }
-    const url = `http://localhost:5000/api/verifyemail/${token.token}`
+    const url = `http://localhost:3000/verifyemail/${token.token}`
     sendEmail({
         from: 'noreply@example.com',
         to: req.body.email,
@@ -153,7 +154,7 @@ exports.forgetPassword = async (req, res) => {
     if (!token) {
         return res.status(400).json({ error: "Something went wrong" })
     }
-    const url = `http://localhost:5000/api/resetpassword/${token.token}`
+    const url = `http://localhost:3000/resetpassword/${token.token}`
     sendEmail({
         from: 'noreply@example.com',
         to: req.body.email,

@@ -4,13 +4,13 @@ const { categoryCheck, validate } = require('../validation')
 const router = require('express').Router()
 
 // endpoints
-router.post('/category', checkAdmin, categoryCheck, validate, addCategory)
+router.post('/addcategory', categoryCheck, validate, addCategory)
 // router.get('/category', getAllCategories)
 
 router.get('/getallcategories', getAllCategories)
 
 router.get('/category/:id', getCategoryDetails)
-router.put('/updatecategory/:id',checkAdmin, updateCategory)
+router.put('/updatecategory/:id', updateCategory)
 
 router.delete('/deletecategory/:id', checkAdmin, deleteCategory)
 
