@@ -12,6 +12,6 @@ router.get('/getallcategories', getAllCategories)
 router.get('/category/:id', getCategoryDetails)
 router.put('/updatecategory/:id', updateCategory)
 
-router.delete('/deletecategory/:id', checkAdmin, deleteCategory)
+router.delete('/deletecategory/:id', deleteCategory)
 
 module.exports =router

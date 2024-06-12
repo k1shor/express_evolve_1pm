@@ -275,3 +275,13 @@ exports.checkAdmin = (req, res, next) => expressjwt({
     }
 })
 
+// change user role
+exports.changeRole = async (req, res) => {
+    let user = await UserModel.findByIdAndUpdate(req.params.id, {
+        role: req.body.role
+    }, { new: true })
+    if (!user) {
+        return res.status(400).json({ error: "Something went wrong" })
+    }
+    res.send({ message: 'User role updated' })
+}

@@ -1,4 +1,5 @@
 const ProductModel = require('../model/ProductModel')
+const fs = require('fs')
 
 // add new product
 exports.addProduct = async (req, res) => {
@@ -58,6 +59,13 @@ exports.getProductByCategory = async (req, res) => {
 // update product
 exports.updateProduct = async (req, res) => {
     try {
+        if(req.file){
+            fs.unlink(req.body.imageUrl,(error)=>{
+                if(error){
+                    console.log(error)
+                }
+            })
+        }
         let product = await ProductModel.findByIdAndUpdate(req.params.id, {
             title: req.body.title,
             price: req.body.price,

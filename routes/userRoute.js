@@ -1,4 +1,4 @@
-const { register, verifyUser, resendVerification, forgetPassword, resetPassword, signin, logout, getUsersList, makeAdmin, authorizeLogin } = require('../controller/userController')
+const { register, verifyUser, resendVerification, forgetPassword, resetPassword, signin, logout, getUsersList, makeAdmin, authorizeLogin, changeRole } = require('../controller/userController')
 const { userCheck, validate } = require('../validation')
 const router = require('express').Router()
 
@@ -10,9 +10,9 @@ router.post('/resetpassword/:token', resetPassword)
 router.post('/login', signin)
 router.get("/logout",logout)
 
-router.get('/userlist', authorizeLogin, getUsersList)
+router.get('/userlist', getUsersList)
 router.post("/makeAdmin", makeAdmin)
-
+router.put('/changerole/:id',changeRole)
 
 
 module.exports = router
